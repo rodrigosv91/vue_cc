@@ -1,14 +1,15 @@
 <template>
   <div class="container">
-    <h1>Hello 1W</h1>
+    <Header title="Task Tracker" />
   </div>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
+import Header from "./components/Header.vue";
 
 @Options({
-  components: {},
+  components: { Header },
 })
 export default class App extends Vue {}
 </script>
