@@ -1,5 +1,11 @@
 <template>
-  <button v-bind:style="{ background: color }" class="btn">{{ text }}</button>
+  <button
+    v-on:click="onClick()"
+    v-bind:style="{ background: color }"
+    class="btn"
+  >
+    {{ text }}
+  </button>
 </template>
 
 <script lang="ts">
@@ -8,6 +14,11 @@ export default {
   props: {
     text: String,
     color: String,
+  },
+  methods: {
+    onClick() {
+      console.log("click");
+    },
   },
 };
 </script>
