@@ -9,7 +9,7 @@
 import { Options, Vue } from "vue-class-component";
 import Header from "./components/Header.vue";
 import Tasks from "./components/Tasks.vue";
-import { Task } from "./interface/Task";
+import { ITask } from "./interface/ITask";
 
 // @Options({
 
@@ -22,7 +22,7 @@ export default {
   },
   data() {
     return {
-      tasks: [] as Task[],
+      tasks: [] as ITask[],
     };
   },
   created() {
