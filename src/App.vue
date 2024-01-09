@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <Header title="Task Tracker" />
-    <Tasks :tasks="tasks" />
+    <Tasks :tasks="tasks" @delete-task="deleteTask" />
   </div>
 </template>
 
@@ -24,6 +24,12 @@ export default {
     return {
       tasks: [] as ITask[],
     };
+  },
+  methods: {
+    deleteTask(id: number) {
+      console.log("task", id);
+      this.tasks = this.tasks.filter((task) => task.id !== id);
+    },
   },
   created() {
     this.tasks = [
