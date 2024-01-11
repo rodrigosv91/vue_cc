@@ -24,11 +24,7 @@ export default {
   },
   computed: {
     homePage() {
-      if (this.$route.path === "/") {
-        return true;
-      } else {
-        return false;
-      }
+      return this.$route.path === "/" ? true : false;
     },
   },
 };
