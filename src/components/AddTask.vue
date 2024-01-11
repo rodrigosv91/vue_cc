@@ -1,5 +1,5 @@
 <template>
-  <form @submit="onSubmit" class="add-form">
+  <form @submit.prevent="onSubmit" class="add-form">
     <div class="form-control">
       <label>Task</label>
       <input type="text" v-model="text" name="text" placeholder="Add Task" />
@@ -23,41 +23,37 @@
 </template>
 
 <script lang="ts">
-export default {
-  name: "AddTask",
-  data() {
-    return {
-      text: "",
-      day: "",
-      reminder: false,
+import { Options, Vue } from "vue-class-component";
+
+@Options({})
+export default class AddTask extends Vue {
+  text: string = "";
+  day: string = "";
+  reminder: boolean = false;
+
+  onSubmit(): void {
+    if (!this.text) {
+      alert("Please add a task");
+      return;
+    }
+
+    const newTask = {
+      //id: Math.floor(Math.random() * 100000),
+      text: this.text,
+      day: this.day,
+      reminder: this.reminder,
     };
-  },
-  methods: {
-    onSubmit(e: any) {
-      e.preventDefault();
 
-      if (!this.text) {
-        alert("Please add a task");
-        return;
-      }
+    this.$emit("add-task", newTask);
+    this.clearForm();
+  }
 
-      const newTask = {
-        id: Math.floor(Math.random() * 100000),
-        text: this.text,
-        day: this.day,
-        reminder: this.reminder,
-      };
-
-      this.$emit("add-task", newTask);
-      this.clearForm();
-    },
-    clearForm() {
-      this.text = "";
-      this.day = "";
-      this.reminder = false;
-    },
-  },
-};
+  clearForm(): void {
+    this.text = "";
+    this.day = "";
+    this.reminder = false;
+  }
+}
 </script>
 
 <style scoped>
