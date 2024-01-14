@@ -10,26 +10,15 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
+import { ref } from "vue";
 import Header from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
 
-export default {
-  name: "App",
-  components: {
-    Header,
-    Footer,
-  },
-  data() {
-    return {
-      showAddTask: false,
-    };
-  },
-  methods: {
-    toggleAddTask() {
-      this.showAddTask = !this.showAddTask;
-    },
-  },
+const showAddTask = ref(false);
+
+const toggleAddTask = () => {
+  showAddTask.value = !showAddTask.value;
 };
 </script>
 
