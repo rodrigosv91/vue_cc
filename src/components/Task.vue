@@ -1,6 +1,6 @@
 <template>
   <div
-    @dblclick="$emit('toggle-reminder', task.id)"
+    @dblclick="emit('toggle-reminder', task.id)"
     :class="[task.reminder ? 'reminder' : '', 'task']"
   >
     <h3>
@@ -11,26 +11,16 @@
   </div>
 </template>
 
-<script lang="ts">
-import { ITask } from "../interface/ITask";
+<script setup lang="ts">
+const { task } = defineProps(["task"]);
+const emit = defineEmits(["toggle-reminder", "delete-task"]);
 
-export default {
-  name: "Task",
-  props: {
-    task: {
-      type: Object as () => ITask,
-      default: () => ({}),
-    },
-  },
-  methods: {
-    onDelete(id: number) {
-      this.$emit("delete-task", id);
-    },
-  },
+const onDelete = (id: number) => {
+  emit("delete-task", id);
 };
 </script>
 
-<style scope>
+<style scoped>
 .fas {
   color: red;
 }
