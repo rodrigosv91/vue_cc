@@ -8,17 +8,11 @@
   </button>
 </template>
 
-<script lang="ts">
-export default {
-  name: "Button",
-  props: {
-    text: String,
-    color: String,
-  },
-  methods: {
-    onClick() {
-      this.$emit("btn-click");
-    },
-  },
+<script setup lang="ts">
+const { text, color } = defineProps(["text", "color"]);
+const emit = defineEmits(["btn-click"]);
+
+const onClick = () => {
+  emit("btn-click");
 };
 </script>
