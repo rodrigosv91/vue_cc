@@ -10,24 +10,14 @@
   </header>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
+import { computed, defineProps } from "vue";
+import { useRoute } from "vue-router";
 import Button from "./Button.vue";
 
-export default {
-  name: "Header",
-  props: {
-    title: String,
-    showAddTask: Boolean,
-  },
-  components: {
-    Button,
-  },
-  computed: {
-    homePage() {
-      return this.$route.path === "/" ? true : false;
-    },
-  },
-};
+const route = useRoute();
+const { title, showAddTask } = defineProps(["title", "showAddTask"]);
+const homePage = computed(() => route.path === "/");
 </script>
 
 <style scoped>
