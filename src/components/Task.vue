@@ -9,22 +9,30 @@
     </h3>
     <p>
       {{ task.day }}
-
-      <i @click="onEditClick(task.id)" class="fas fa-pen-square"></i>
+      <i @click="toggleEditTask" class="fas fa-pen-square"></i>
     </p>
   </div>
+  <EditTask v-show="showEditTask" :task="task" />
 </template>
 
 <script setup lang="ts">
+import { ref, defineProps, defineEmits } from "vue";
+import EditTask from "./EditTask.vue";
+
 const { task } = defineProps(["task"]);
-const emit = defineEmits(["toggle-reminder", "delete-task", "edit-task"]);
+const emit = defineEmits([
+  "toggle-reminder",
+  "delete-task",
+  "toggle-edit-task",
+]);
+const showEditTask = ref(false);
 
 const onDelete = (id: number) => {
   emit("delete-task", id);
 };
-const onEditClick = (id: number) => {
-  emit("edit-task", id);
-  console.log("edit", id);
+
+const toggleEditTask = () => {
+  showEditTask.value = !showEditTask.value;
 };
 </script>
 
@@ -38,6 +46,7 @@ const onEditClick = (id: number) => {
   margin: 5px;
   padding: 10px 20px;
   cursor: pointer;
+  margin-bottom: 20px;
 }
 
 .task.reminder {

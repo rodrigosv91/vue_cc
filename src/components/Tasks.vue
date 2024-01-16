@@ -3,14 +3,20 @@
     <Task
       @toggle-reminder="emit('toggle-reminder', task.id)"
       @delete-task="emit('delete-task', task.id)"
+      @toggle-edit-task="emit('toggle-edit-task')"
       :task="task"
     />
   </div>
 </template>
 
 <script setup lang="ts">
+import { defineProps, defineEmits } from "vue";
 import Task from "./Task.vue";
 
 const { tasks } = defineProps(["tasks"]);
-const emit = defineEmits(["delete-task", "toggle-reminder"]);
+const emit = defineEmits([
+  "delete-task",
+  "toggle-reminder",
+  "toggle-edit-task",
+]);
 </script>

@@ -4,6 +4,7 @@
     <Tasks
       @toggle-reminder="toggleReminder"
       @delete-task="deleteTask"
+      @toggle-edit-task="toggleEdit"
       :tasks="tasks"
     />
   </div>
@@ -18,6 +19,10 @@ import { ITask } from "../interface/ITask";
 const URL_BACKEND = "http://localhost:5000";
 const { showAddTask } = defineProps(["showAddTask"]);
 const tasks = ref<ITask[]>([]);
+
+const toggleEdit = () => {
+  console.log("edt");
+};
 
 const addTask = async (task: ITask) => {
   const res = await fetch(URL_BACKEND + "/tasks", {
