@@ -12,18 +12,24 @@
       <i @click="toggleEditTask" class="fas fa-pen-square"></i>
     </p>
   </div>
-  <EditTask v-show="showEditTask" :task="task" />
+  <EditTask
+    v-show="showEditTask"
+    @edit-task="emit('edit-task', $event)"
+    :task="task"
+  />
 </template>
 
 <script setup lang="ts">
 import { ref, defineProps, defineEmits } from "vue";
 import EditTask from "./EditTask.vue";
+import { ITask } from "../interface/ITask";
 
 const { task } = defineProps(["task"]);
 const emit = defineEmits([
   "toggle-reminder",
   "delete-task",
   "toggle-edit-task",
+  "edit-task",
 ]);
 const showEditTask = ref(false);
 

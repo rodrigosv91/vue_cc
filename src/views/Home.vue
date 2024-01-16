@@ -4,7 +4,7 @@
     <Tasks
       @toggle-reminder="toggleReminder"
       @delete-task="deleteTask"
-      @toggle-edit-task="toggleEdit"
+      @edit-task="editTask"
       :tasks="tasks"
     />
   </div>
@@ -20,8 +20,8 @@ const URL_BACKEND = "http://localhost:5000";
 const { showAddTask } = defineProps(["showAddTask"]);
 const tasks = ref<ITask[]>([]);
 
-const toggleEdit = () => {
-  console.log("edt");
+const editTask = (task: ITask) => {
+  console.log("edt3", task);
 };
 
 const addTask = async (task: ITask) => {

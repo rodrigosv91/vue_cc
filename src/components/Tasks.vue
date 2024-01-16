@@ -4,6 +4,7 @@
       @toggle-reminder="emit('toggle-reminder', task.id)"
       @delete-task="emit('delete-task', task.id)"
       @toggle-edit-task="emit('toggle-edit-task')"
+      @edit-task="emit('edit-task', $event)"
       :task="task"
     />
   </div>
@@ -18,5 +19,6 @@ const emit = defineEmits([
   "delete-task",
   "toggle-reminder",
   "toggle-edit-task",
+  "edit-task",
 ]);
 </script>
