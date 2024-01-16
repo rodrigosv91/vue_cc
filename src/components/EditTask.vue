@@ -25,14 +25,8 @@ const onSubmit = () => {
     alert("Please add a day");
     return;
   }
-
-  const newTask = {
-    text: task.text,
-    day: day,
-    reminder: task.reminder,
-  };
-
-  emit("edit-task", newTask);
+  task.day = day;
+  emit("edit-task", task);
 };
 </script>
 

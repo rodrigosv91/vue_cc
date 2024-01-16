@@ -20,8 +20,21 @@ const URL_BACKEND = "http://localhost:5000";
 const { showAddTask } = defineProps(["showAddTask"]);
 const tasks = ref<ITask[]>([]);
 
-const editTask = (task: ITask) => {
-  console.log("edt3", task);
+const editTask = async (task: ITask) => {
+  const taskId = task.id;
+  const taskToUpdate = await fetchTaskById(task.id);
+  const upadatedTask = { ...taskToUpdate, day: task.day };
+  const res = await fetch(URL_BACKEND + `/tasks/${task.id}`, {
+    method: "PUT",
+    headers: { "Content-type": "application/json" },
+    body: JSON.stringify(upadatedTask),
+  });
+
+  const data = await res.json();
+
+  tasks.value = tasks.value.map((task) =>
+    task.id === taskId ? { ...task, day: data.day } : task
+  );
 };
 
 const addTask = async (task: ITask) => {
