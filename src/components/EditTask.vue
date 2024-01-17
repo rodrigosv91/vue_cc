@@ -9,7 +9,7 @@
       />
     </div>
 
-    <input type="submit" value="Save Task" class="btn btn-block" />
+    <input type="submit" value="Save" class="btn btn-block" />
   </form>
 </template>
 
@@ -33,6 +33,7 @@ const onSubmit = () => {
 <style scoped>
 .add-form {
   margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .form-control label {

@@ -11,6 +11,7 @@
       {{ task.day }}
       <i @click="toggleEditTask" class="fas fa-pen-square"></i>
     </p>
+    <router-link v-bind:to="'/task/' + task.id">View Details</router-link>
   </div>
   <EditTask
     v-show="showEditTask"
@@ -22,7 +23,6 @@
 <script setup lang="ts">
 import { ref, defineProps, defineEmits } from "vue";
 import EditTask from "./EditTask.vue";
-import { ITask } from "../interface/ITask";
 
 const { task } = defineProps(["task"]);
 const emit = defineEmits([
@@ -52,7 +52,7 @@ const toggleEditTask = () => {
   margin: 5px;
   padding: 10px 20px;
   cursor: pointer;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 
 .task.reminder {
