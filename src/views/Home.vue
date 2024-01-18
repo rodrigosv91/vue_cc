@@ -16,7 +16,7 @@ import Tasks from "../components/Tasks.vue";
 import AddTask from "../components/AddTask.vue";
 import { ITask } from "../interface/ITask";
 
-const URL_BACKEND = "http://localhost:5000";
+const URL_BACKEND = process.env.VUE_APP_URL_BACKEND;
 const { showAddTask } = defineProps(["showAddTask"]);
 const tasks = ref<ITask[]>([]);
 

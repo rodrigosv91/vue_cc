@@ -13,7 +13,7 @@ const route = useRoute();
 const loading = ref(false);
 const taskId = ref();
 
-const URL_BACKEND = "http://localhost:5000";
+const URL_BACKEND = process.env.VUE_APP_URL_BACKEND;
 
 const fetchTaskById = async (id: number) => {
   const res = await fetch(URL_BACKEND + `/tasks/${id}`);
@@ -22,6 +22,7 @@ const fetchTaskById = async (id: number) => {
 };
 
 onMounted(() => {
+  console.log(URL_BACKEND);
   taskId.value = route.params.id;
 });
 </script>
