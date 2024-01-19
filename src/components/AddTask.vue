@@ -22,38 +22,35 @@
   </form>
 </template>
 
-<script lang="ts">
-import { Options, Vue } from "vue-class-component";
+<script setup lang="ts">
+import { ref, defineEmits } from "vue";
 
-@Options({})
-export default class AddTask extends Vue {
-  text: string = "";
-  day: string = "";
-  reminder: boolean = false;
+const text = ref("");
+const day = ref("");
+const reminder = ref(false);
 
-  onSubmit(): void {
-    if (!this.text) {
-      alert("Please add a task");
-      return;
-    }
+const emit = defineEmits(["add-task"]);
 
-    const newTask = {
-      //id: Math.floor(Math.random() * 100000),
-      text: this.text,
-      day: this.day,
-      reminder: this.reminder,
-    };
-
-    this.$emit("add-task", newTask);
-    this.clearForm();
+const clearForm = () => {
+  text.value = "";
+  day.value = "";
+  reminder.value = false;
+};
+const onSubmit = () => {
+  if (!text.value) {
+    alert("Please add a task");
+    return;
   }
 
-  clearForm(): void {
-    this.text = "";
-    this.day = "";
-    this.reminder = false;
-  }
-}
+  const newTask = {
+    text: text.value,
+    day: day.value,
+    reminder: reminder.value,
+  };
+
+  emit("add-task", newTask);
+  clearForm();
+};
 </script>
 
 <style scoped>
