@@ -13,11 +13,7 @@
     </p>
     <router-link v-bind:to="'/task/' + task.id">View Details</router-link>
   </div>
-  <EditTask
-    v-show="showEditTask"
-    @edit-task="emit('edit-task', $event)"
-    :task="task"
-  />
+  <EditTask v-show="showEditTask" @edit-task="editTask($event)" :task="task" />
 </template>
 
 <script setup lang="ts">
@@ -39,6 +35,11 @@ const onDelete = (id: number) => {
 
 const toggleEditTask = () => {
   showEditTask.value = !showEditTask.value;
+};
+
+const editTask = (event: Event) => {
+  emit("edit-task", event);
+  toggleEditTask();
 };
 </script>
 
